@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot' version '2.3.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id 'groovy'
+    id 'codenarc'
 }
 
 group = 'eu.nuoli'
@@ -26,6 +28,10 @@ dependencies {
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+    testImplementation 'org.codehaus.groovy:groovy'
+    testImplementation 'org.spockframework:spock-core:2.0-M2-groovy-2.5'
+    testImplementation 'org.spockframework:spock-spring:2.0-M2-groovy-2.5'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
@@ -33,4 +39,15 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    //log the test results
+    testLogging {
+        events 'PASSED', 'FAILED', 'SKIPPED'
+        exceptionFormat = 'full'
+    }
+}
+
+codenarc {
+    toolVersion = '1.0'
+    configFile = file('config/codenarc/codenarc.groovy')
+    reportFormat = 'console'
 }
