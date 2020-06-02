@@ -1,0 +1,3 @@
+= Item-Service
+
+This project aims to reproduce a project from the university using current technologies.
