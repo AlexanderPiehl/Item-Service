@@ -1,5 +1,9 @@
 package eu.nuoli.itemservice.item.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+@JsonDeserialize(builder = Item.Builder.class)
 public class Item {
     private String id;
     private String name;
@@ -25,6 +29,7 @@ public class Item {
         return new Builder();
     }
 
+    @JsonPOJOBuilder(withPrefix = "")
     public static class Builder {
         private String id;
         private String name;
