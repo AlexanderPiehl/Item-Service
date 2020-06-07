@@ -2,6 +2,7 @@ package eu.nuoli.itemservice.item.service;
 
 import eu.nuoli.itemservice.item.domain.Item;
 import eu.nuoli.itemservice.item.entity.ItemEntity;
+import eu.nuoli.itemservice.item.exceptions.NotFoundException;
 import eu.nuoli.itemservice.item.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +20,11 @@ public class ItemService {
     }
 
     public Item getItem(String id) {
-        return itemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Item was not found")).toDomain();
+        return itemRepository.findById(id).orElseThrow(() -> new NotFoundException("No Item was found for the given id " + id)).toDomain();
     }
 
     public Item updateItem(String id, Item item) {
-        ItemEntity itemEntity = itemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Item was not found"));
+        ItemEntity itemEntity = itemRepository.findById(id).orElseThrow(() -> new NotFoundException("No Item was found for the given id " + id));
         itemEntity.setDomainData(item);
 
         return itemRepository.save(itemEntity).toDomain();

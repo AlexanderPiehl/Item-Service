@@ -3,6 +3,7 @@ package eu.nuoli.itemservice.item.service
 import eu.nuoli.itemservice.item.SpecificationBase
 import eu.nuoli.itemservice.item.domain.Item
 import eu.nuoli.itemservice.item.entity.ItemEntity
+import eu.nuoli.itemservice.item.exceptions.NotFoundException
 import eu.nuoli.itemservice.item.repository.ItemRepository
 import org.springframework.beans.factory.annotation.Autowired
 
@@ -49,13 +50,13 @@ class ItemServiceSpec extends SpecificationBase {
         name = 'name'
     }
 
-    def 'getItem should throw a IllegalArgumentException if no Item was found'() {
+    def 'getItem should throw a NotFoundException if no Item was found'() {
         when:
-        itemService.getItem('id')
+        itemService.getItem('1234')
 
         then:
-        def ex = thrown(IllegalArgumentException)
-        ex.message == 'Item was not found'
+        def ex = thrown(NotFoundException)
+        ex.message == 'No Item was found for the given id 1234'
     }
 
     def 'updateItem should update a Item'() {
@@ -76,13 +77,13 @@ class ItemServiceSpec extends SpecificationBase {
         newName = 'name2'
     }
 
-    def 'updateItem should throw a IllegalArgumentException if no Item was found'() {
+    def 'updateItem should throw a NotFoundException if no Item was found'() {
         when:
-        itemService.updateItem('id', Item.builder().build())
+        itemService.updateItem('1234', Item.builder().build())
 
         then:
-        def ex = thrown(IllegalArgumentException)
-        ex.message == 'Item was not found'
+        def ex = thrown(NotFoundException)
+        ex.message == 'No Item was found for the given id 1234'
     }
 
     def 'deleteItem should delete a Item'() {

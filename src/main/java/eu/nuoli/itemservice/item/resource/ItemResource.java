@@ -1,4 +1,4 @@
-package eu.nuoli.itemservice.item.controller;
+package eu.nuoli.itemservice.item.resource;
 
 import eu.nuoli.itemservice.item.service.ItemService;
 import eu.nuoli.itemservice.item.domain.Item;
