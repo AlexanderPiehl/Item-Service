@@ -1,3 +1,8 @@
 = Item-Service
 
 This project aims to reproduce a project from the university using current technologies.
+
+== Development
+
+A MongoDB is required for local execution.
+The MongoDB must be accessible at localhost:27017.
