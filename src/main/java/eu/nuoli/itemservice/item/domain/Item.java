@@ -2,10 +2,16 @@ package eu.nuoli.itemservice.item.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+import javax.validation.constraints.NotBlank;
 
 @JsonDeserialize(builder = Item.Builder.class)
 public class Item {
+    @Schema(description = "Id of the Item")
     private String id;
+    @Schema(description = "Name of the Item")
+    @NotBlank
     private String name;
 
     public Item(Builder builder) {
