@@ -12,7 +12,7 @@ public class Item {
     private String id;
     @Schema(description = "Name of the Item")
     @NotBlank
-    private String name;
+    private final String name;
 
     public Item(Builder builder) {
         this.id = builder.id;
