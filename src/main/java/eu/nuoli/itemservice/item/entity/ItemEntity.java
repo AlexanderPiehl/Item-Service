@@ -1,6 +1,7 @@
 package eu.nuoli.itemservice.item.entity;
 
 import eu.nuoli.itemservice.item.domain.Item;
+import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.Instant;
 
 @Document(collection = "item")
+@Getter
 public class ItemEntity {
     @Id
     private String id;
@@ -26,22 +28,6 @@ public class ItemEntity {
 
     public ItemEntity(Item item) {
         setDomainData(item);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Instant getCreated() {
-        return created;
-    }
-
-    public Instant getLastModified() {
-        return lastModified;
     }
 
     public Item toDomain() {
